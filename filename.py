@@ -1,4 +1,4 @@
-import re
+import os
 import sublime, sublime_plugin
 
 class FilenameCommand(sublime_plugin.TextCommand):
@@ -7,7 +7,7 @@ class FilenameCommand(sublime_plugin.TextCommand):
 
     if fn:
       # Оставляем только имя файла
-      fn = re.sub("^.*?([^\/]+)$", r"\1", fn)
+      fn = os.path.splitext(fn)[0]
       # Позиция курсора
       pos = self.view.sel()[0].begin()
 
