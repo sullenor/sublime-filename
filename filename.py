@@ -3,14 +3,14 @@ import sublime, sublime_plugin
 
 class FilenameCommand(sublime_plugin.TextCommand):  
   def run(self, edit):
-    fn = self.view.file_name()
+    fn = self.view.name()
     sel = self.view.sel()
 
     if fn :
       # Оставляем только имя файла
       fn = os.path.splitext(fn)[0]
     else :
-      fn = "non-selected-file"
+      fn = "Error: select file"
 
     # если выбран текст
     if len(sel) > 0 :
