@@ -1,14 +1,15 @@
 import os
+from os.path import basename
 import sublime, sublime_plugin
 
 class FilenameCommand(sublime_plugin.TextCommand):  
   def run(self, edit):
-    fn = self.view.name()
+    fn = self.view.file_name()
     sel = self.view.sel()
 
     if fn :
       # Оставляем только имя файла
-      fn = os.path.splitext(fn)[0]
+      fn = basename(os.path.splitext(fn)[0])
     else :
       fn = "Error: select file"
 
